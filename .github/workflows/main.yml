@@ -1,1 +1,52 @@
+on:
 
+  push:
+
+    branche:
+
+      - main
+
+     
+
+
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+
+
+
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+
+
+
+      - name: "login to Docker hub "
+
+        run: docker login --username ${{secrets.USERNAME}} --password ${{secrets.TOKEN}}
+
+
+
+
+      - name: "Bulding docker image"
+
+        run: docker build -t ${{secrets.USERNAME}}/swe-task .
+
+
+
+
+      - name: "pushing to docker hub"
+
+        run: docker push ${{secrets.USERNAME}}/swe-task      
+
+
+
+
+has context menu
